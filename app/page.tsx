@@ -1,3 +1,5 @@
+import { ThemeToggle } from "@/components/theme-toggle"
+
 const categories = [
   {
     icon: "⌁",
@@ -42,10 +44,10 @@ const popularTools = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f7f9fc] text-slate-900">
+    <main className="min-h-screen bg-[#f7f9fc] dark:bg-slate-950 text-slate-900 dark:text-slate-100">
 
       {/* Navigation */}
-      <nav className="border-b border-slate-200/80 bg-white/90 backdrop-blur">
+      <nav className="border-b border-slate-200/80 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur">
         <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-6 lg:px-8">
 
           <a href="/" className="flex items-center gap-3">
@@ -64,37 +66,40 @@ export default function Home() {
             </div>
           </a>
 
-          <div className="hidden items-center gap-8 text-sm font-medium text-slate-500 md:flex">
+          <div className="hidden items-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400 md:flex">
 
             <a
               href="/calculators"
-              className="transition hover:text-slate-950"
+              className="transition hover:text-slate-950 dark:hover:text-slate-100"
             >
               Tools
             </a>
 
             <a
               href="/neetpg"
-              className="transition hover:text-slate-950"
+              className="transition hover:text-slate-950 dark:hover:text-slate-100"
             >
               NEET-PG
             </a>
 
             <a
               href="#reference"
-              className="transition hover:text-slate-950"
+              className="transition hover:text-slate-950 dark:hover:text-slate-100"
             >
               Reference
             </a>
 
           </div>
 
-          <a
-            href="/calculators"
-            className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:shadow"
-          >
-            Explore tools
-          </a>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <a
+              href="/calculators"
+              className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:shadow"
+            >
+              Explore tools
+            </a>
+          </div>
 
         </div>
       </nav>
