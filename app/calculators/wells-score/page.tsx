@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { buttonClassName, CalculatorPage, Result } from "../calculator-page";
+import { buttonClassName, CalculatorPage, ClinicalNote, Result } from "../calculator-page";
 
 const criteria = [
   ["Clinical signs of DVT (leg swelling and pain with palpation)", 3],
@@ -19,7 +19,7 @@ export default function WellsScorePage() {
   const toggle = (index: number) => setSelected((current) => current.includes(index) ? current.filter((item) => item !== index) : [...current, index]);
   const total = selected.reduce((sum, index) => sum + criteria[index][1], 0);
 
-  return <CalculatorPage title="Wells Score for Pulmonary Embolism" description="Estimate the pre-test probability of pulmonary embolism using the Wells criteria." formula="Wells score = sum of selected clinical criteria" note="This tool supports clinical assessment; it does not replace diagnostic testing or clinical judgment.">
+  return <CalculatorPage title="Wells Score for Pulmonary Embolism" description="Estimate the pre-test probability of pulmonary embolism using the three-tier Wells criteria." formula="Wells score = sum of selected clinical criteria" note="This tool supports clinical assessment; it does not replace diagnostic testing or clinical judgment.">
     <div className="space-y-3">
       {criteria.map(([label, points], index) => <label key={label} className="flex cursor-pointer gap-3 rounded-xl border border-slate-200 p-4 transition hover:border-slate-300">
         <input type="checkbox" checked={selected.includes(index)} onChange={() => toggle(index)} className="mt-1 size-4 accent-slate-950" />
@@ -28,5 +28,8 @@ export default function WellsScorePage() {
     </div>
     <button className={buttonClassName} onClick={() => setScore(total)}>Calculate Wells score</button>
     {score !== null && <Result label="Wells score" value={`${score} points`} detail={score > 6 ? "High probability" : score > 2 ? "Moderate probability" : "Low probability"} />}
+    <ClinicalNote title="Reference values and importance">
+      This page uses the three-tier model: low probability at 2 points or fewer, moderate probability above 2 through 6, and high probability above 6. A separate two-tier version labels scores above 4 as “PE likely”; do not mix the cutoffs. The score estimates pre-test probability and helps guide the next diagnostic step—it does not confirm or exclude pulmonary embolism on its own.
+    </ClinicalNote>
   </CalculatorPage>;
 }

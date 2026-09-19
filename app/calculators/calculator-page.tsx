@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 type CalculatorPageProps = {
   title: string;
@@ -21,9 +22,9 @@ export function CalculatorPage({
     <main className="min-h-screen bg-[#f7f9fc] text-slate-950">
       <div className="mx-auto max-w-3xl px-6 py-12 sm:py-20">
         <div className="mb-10">
-          <a href="/calculators" className="text-sm font-medium text-slate-400 transition hover:text-slate-700">
+          <Link href="/calculators" className="text-sm font-medium text-slate-400 transition hover:text-slate-700">
             ← All calculators
-          </a>
+          </Link>
           <div className="mt-10">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600">Medical Calculator</p>
             <h1 className="text-4xl font-bold tracking-[-0.03em] sm:text-5xl">{title}</h1>
@@ -62,5 +63,14 @@ export function Result({ label, value, detail }: { label: string; value: string;
       <div className="mt-2 text-5xl font-bold tracking-[-0.04em] sm:text-6xl">{value}</div>
       {detail && <p className="mt-3 text-sm font-semibold text-slate-600">{detail}</p>}
     </div>
+  );
+}
+
+export function ClinicalNote({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="mt-8 rounded-2xl border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-6 text-slate-600">
+      <h2 className="font-semibold text-slate-800">{title}</h2>
+      <div className="mt-1.5">{children}</div>
+    </section>
   );
 }
