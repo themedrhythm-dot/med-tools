@@ -23,6 +23,12 @@ const categories = [
     description: "Useful schedules and clinical references in one place.",
     tools: ["Immunization", "Screening", "Emergency", "Protocols"],
   },
+  {
+    icon: "◌",
+    title: "Clinical Examination",
+    description: "Visual, step-by-step clinical examination learning.",
+    tools: ["Medicine", "Respiratory", "Cardiovascular", "Neurology"],
+  },
 ];
 
 const popularTools = [
@@ -197,6 +203,8 @@ export default function Home() {
                   ? "/calculators"
                   : category.title === "NEET-PG Study"
                   ? "/neetpg"
+                  : category.title === "Clinical Examination"
+                  ? "/clinical-examination"
                   : "#"
               }
               key={category.title}
