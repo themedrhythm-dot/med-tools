@@ -9,31 +9,31 @@ const calculators = [
     name: "GFR Calculator",
     description: "Estimate glomerular filtration rate.",
     category: "Renal",
-    href: "#",
+    href: "/calculators/gfr",
   },
   {
     name: "Anion Gap",
     description: "Calculate the serum anion gap.",
     category: "Electrolytes",
-    href: "#",
+    href: "/calculators/anion-gap",
   },
   {
     name: "Corrected Calcium",
     description: "Adjust serum calcium for albumin.",
     category: "Electrolytes",
-    href: "#",
+    href: "/calculators/corrected-calcium",
   },
   {
     name: "Wells Score",
     description: "Clinical probability assessment.",
     category: "Clinical Score",
-    href: "#",
+    href: "/calculators/wells-score",
   },
   {
     name: "Parkland Formula",
     description: "Estimate fluid requirements in burns.",
     category: "Emergency",
-    href: "#",
+    href: "/calculators/parkland-formula",
   },
 ];
 
