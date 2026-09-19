@@ -1,4 +1,7 @@
 import { ThemeToggle } from "@/components/theme-toggle"
+import { useKeyboardShortcuts } from "@/hooks/use-keyboard-shortcuts"
+import { SearchModal } from "@/components/search-modal"
+import { useState } from "react"
 
 const categories = [
   {
@@ -43,6 +46,13 @@ const popularTools = [
 ];
 
 export default function Home() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+
+  useKeyboardShortcuts({
+    "⌘K": () => setIsSearchOpen(true),
+    "Escape": () => setIsSearchOpen(false),
+  })
+
   return (
     <main className="min-h-screen bg-[#f7f9fc] dark:bg-slate-950 text-slate-900 dark:text-slate-100">
 
@@ -416,5 +426,7 @@ export default function Home() {
       </footer>
 
     </main>
+    
+    <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
   );
 }
