@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const systems = [
-  { name: "Respiratory System", description: "A structured examination of the chest and lungs.", steps: ["Inspect", "Palpate", "Percuss", "Auscultate"] },
+  { name: "Respiratory System", description: "A structured examination of the chest and lungs.", steps: ["Inspect", "Palpate", "Percuss", "Auscultate"], href: "/clinical-examination/medicine/respiratory" },
   { name: "Cardiovascular System", description: "A systematic examination of the precordium, pulse, and circulation.", steps: ["General survey", "Pulse", "Precordium", "Auscultation"] },
   { name: "Abdominal Examination", description: "A step-by-step examination of the abdomen and related signs.", steps: ["Inspect", "Auscultate", "Percuss", "Palpate"] },
   { name: "Neurological Examination", description: "A focused approach to higher function, cranial nerves, and the motor system.", steps: ["Higher function", "Cranial nerves", "Motor", "Reflexes"] },
@@ -22,17 +22,19 @@ export default function MedicineExaminationPage() {
         </header>
 
         <section className="mt-12 grid gap-4 sm:grid-cols-2">
-          {systems.map((system, index) => (
-            <article key={system.name} className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
+          {systems.map((system, index) => {
+            const card = <article className="h-full rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
               <span className="text-xs font-semibold tabular-nums text-slate-300">{String(index + 1).padStart(2, "0")}</span>
               <h2 className="mt-5 text-xl font-bold tracking-tight">{system.name}</h2>
               <p className="mt-2 text-sm leading-6 text-slate-500">{system.description}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {system.steps.map((step) => <span key={step} className="rounded-full bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-500">{step}</span>)}
               </div>
-              <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-slate-400">Interactive guide coming next</p>
-            </article>
-          ))}
+              <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-slate-400">{system.href ? "View interactive sample" : "Interactive guide coming next"}</p>
+            </article>;
+
+            return system.href ? <Link key={system.name} href={system.href}>{card}</Link> : <div key={system.name}>{card}</div>;
+          })}
         </section>
       </div>
     </main>
